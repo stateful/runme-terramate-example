@@ -79,7 +79,7 @@ terramate list
 To check how each stack is defined in detail you can use `terramate run`:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7K9TD47MF"}
-terramate run -C stacks/${STAGE} -- cat stack.tm.hcl
+terramate run -- cat stack.tm.hcl
 ```
 
 This will run on each stack directory the command `cat stack.tm.hcl`.
