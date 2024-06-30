@@ -146,7 +146,10 @@ You can check the outputs with:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KNZ6DQWQ","name":"APP_URLS"}
 terramate run -C stacks/prod \
-  terraform output -json 2>/dev/null | jq -r '.url.value' | grep -v null
+  terraform output -json 2>/dev/null \
+  | jq -r '.url.value' \
+  | grep -v null \
+  | tail -n 1
 ```
 
 Open the URL on the browser to check the running service.
