@@ -38,7 +38,7 @@ This is not production-ready code, so use it at your own risk.
 
 This is the overall structure of the project:
 
-```
+```ini {"id":"01J1N5425WZ9SZMJT7K67XA1JA"}
 ├── modules
 │   ├── cloud-run
 │   └── service-account
@@ -72,13 +72,13 @@ Each file will have documentation guiding you through its purpose and usage.
 To check if your Terramate installation is working and get an overview of the
 available stacks just run:
 
-```sh
+```sh {"id":"01J1N5425WZ9SZMJT7K7SZTDP7"}
 terramate list
 ```
 
 To check how each stack is defined in detail you can use `terramate run`:
 
-```sh
+```sh {"id":"01J1N5425WZ9SZMJT7K9TD47MF"}
 terramate run -- cat stack.tm.hcl
 ```
 
@@ -105,7 +105,7 @@ At this point, since our project has uncommitted changes Terramate will prevent 
 from running any commands. Create a branch (or use the flag `--disable-check-git-uncommitted`
 to disable the git checks):
 
-```sh
+```sh {"id":"01J1N5425WZ9SZMJT7KC24FTWK"}
 git checkout -b <your branch name>
 ```
 
@@ -113,32 +113,32 @@ And commit all the changed files.
 
 Now we initialize all our stacks:
 
-```sh
+```sh {"id":"01J1N5425WZ9SZMJT7KEDWCBF0"}
 terramate run -- terraform init
 ```
 
 Check how their plans look like:
 
-```sh
+```sh {"id":"01J1N5425WZ9SZMJT7KEWYDNRD"}
 terramate run -- terraform plan
 ```
 
 And apply them:
 
-```sh
+```sh {"id":"01J1N5425WZ9SZMJT7KHJW510X"}
 terramate run -- terraform apply
 ```
 
 For each Cloud Run service deployed, there will be an output with the URL to
 the deployed service, like this:
 
-```sh
+```sh {"id":"01J1N5425WZ9SZMJT7KJ8WY5WP"}
 url = "https://terramate-app1-<env>-<hash>-lz.a.run.app"
 ```
 
 You can check the outputs with:
 
-```sh
+```sh {"id":"01J1N5425WZ9SZMJT7KNZ6DQWQ"}
 terramate run -- terraform output
 ```
 
@@ -146,7 +146,7 @@ Open the URL on the browser to check the running service.
 
 To avoid unnecessary charges to your account let's destroy all stacks:
 
-```sh
+```sh {"id":"01J1N5425WZ9SZMJT7KP3VAPG7"}
 terramate run --reverse -- terraform destroy
 ```
 
