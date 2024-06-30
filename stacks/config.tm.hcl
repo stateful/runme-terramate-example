@@ -17,10 +17,10 @@ globals {
 
   # provider settings and defaults
   terraform_google_provider_version = "~> 4.0"
-  terraform_google_provider_region  = "europe-north1"
+  terraform_google_provider_region  = "us-central1"
 
-  # this should be adjusted when testing actual deployemnts
-  terraform_google_provider_project = "example-${global.environment}"
+  # this should be adjusted when testing actual deployments
+  terraform_google_provider_project = "runme-cloud-renderers"
 
   ### global variables for use when generating backend
   # all variables defined here can be overwritten in any sub-directory and on the

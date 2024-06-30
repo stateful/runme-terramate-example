@@ -10,10 +10,10 @@ module "cloud_run_app" {
     },
   ]
   image                = "gcr.io/cloudrun/hello:latest"
-  location             = "europe-north1"
+  location             = "us-central1"
   name                 = "terramate-app1-prod"
-  project              = "example-prod"
-  service_account_name = "cloud-run@example-prod.iam.gserviceaccount.com"
+  project              = "runme-cloud-renderers"
+  service_account_name = "cloud-run@runme-cloud-renderers.iam.gserviceaccount.com"
   source               = "../../../../modules/cloud-run"
 }
 output "url" {

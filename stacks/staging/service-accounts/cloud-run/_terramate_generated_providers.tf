@@ -1,8 +1,8 @@
 // TERRAMATE: GENERATED AUTOMATICALLY DO NOT EDIT
 
 provider "google" {
-  project = "example-staging"
-  region  = "europe-north1"
+  project = "runme-cloud-renderers"
+  region  = "us-central1"
 }
 terraform {
   required_providers {

@@ -106,7 +106,11 @@ from running any commands. Create a branch (or use the flag `--disable-check-git
 to disable the git checks):
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KC24FTWK"}
-git checkout -b <your branch name>
+git checkout -b runme-cloud-renderers
+```
+
+```sh {"id":"01J1N5FPRKTKKV8A48JCM86D53"}
+terramate generate
 ```
 
 And commit all the changed files.
