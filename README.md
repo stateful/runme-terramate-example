@@ -158,7 +158,7 @@ terramate run -C stacks/${STAGE} -C stacks/${STAGE} \
   | tr -d '\n'
 ```
 
-Issue a get request to `terramate-app2`:
+Go ahead and issue a GET to `terramate-app2` via cURL:
 
 ```sh {"background":"false","id":"01J1N98T48WVDRBM7BJX417ZSN","interactive":"false"}
 curl $APP_URL2
