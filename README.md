@@ -38,7 +38,7 @@ This is not production-ready code, so use it at your own risk.
 
 This is the overall structure of the project:
 
-```ini {"id":"01J1N5425WZ9SZMJT7K67XA1JA"}
+```plaintext {"id":"01J1N5425WZ9SZMJT7K67XA1JA"}
 ├── modules
 │   ├── cloud-run
 │   └── service-account
@@ -79,7 +79,7 @@ terramate list
 To check how each stack is defined in detail you can use `terramate run`:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7K9TD47MF"}
-terramate run -- cat stack.tm.hcl
+terramate run -C stacks/${STAGE} -- cat stack.tm.hcl
 ```
 
 This will run on each stack directory the command `cat stack.tm.hcl`.
@@ -115,37 +115,42 @@ Generate code again (this steps was missing?):
 terramate generate
 ```
 
-And commit all the changed files.
+And commit all the changed files. Select a stage `prod` or `staging` and deploy the stacks:
+
+```sh {"id":"01J1NAAV0JHK6MTQ7RPR8YQ1QB"}
+export STAGE="prod"
+echo "Deploying stack/${STAGE}"
+```
 
 Now we initialize all our stacks:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KEDWCBF0"}
-terramate run -- terraform init
+terramate run -C stacks/${STAGE} -- terraform init
 ```
 
 Check how their plans look like:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KEWYDNRD"}
-terramate run -- terraform plan
+terramate run -C stacks/${STAGE} -- terraform plan
 ```
 
 And apply them:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KHJW510X"}
-terramate run -- terraform apply
+terramate run -C stacks/${STAGE} -- terraform apply
 ```
 
 For each Cloud Run service deployed, there will be an output with the URL to
 the deployed service, like this:
 
-```sh {"id":"01J1N5425WZ9SZMJT7KJ8WY5WP"}
+```plaintext {"id":"01J1N5425WZ9SZMJT7KJ8WY5WP"}
 url = "https://terramate-app1-<env>-<hash>-lz.a.run.app"
 ```
 
 You can check the outputs with:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KNZ6DQWQ","name":"APP_URL2"}
-terramate run -C stacks/prod \
+terramate run -C stacks/${STAGE} -C stacks/${STAGE} \
   terraform output -json 2>/dev/null \
   | jq -r '.url.value' \
   | grep -v null \
@@ -164,7 +169,7 @@ Open the URL on the browser to check the running service.
 To avoid unnecessary charges to your account let's destroy all stacks:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KP3VAPG7"}
-terramate run --reverse -- terraform destroy
+terramate run -C stacks/${STAGE} --reverse -- terraform destroy
 ```
 
 The `--reverse` flag runs all stacks in reversed order, which is desirable
