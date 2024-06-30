@@ -145,7 +145,8 @@ url = "https://terramate-app1-<env>-<hash>-lz.a.run.app"
 You can check the outputs with:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KNZ6DQWQ"}
-terramate run -- terraform output
+terramate run -C stacks/prod \
+  terraform output -json 2>/dev/null | jq -r '.url.value' | grep -v null
 ```
 
 Open the URL on the browser to check the running service.
