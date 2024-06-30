@@ -17,6 +17,24 @@ module "cloud_run" {
       containers = [
         {
           image = var.image
+          env = [
+            {
+              name  = "MY_NAME"
+              value = "no-value"
+            },
+            {
+              name  = "SERVICE_IMAGE"
+              value = var.image
+            },
+            {
+              name  = "GCP_PROJECT"
+              value = var.project
+            },
+            {
+              name  = "GCP_LOCATION"
+              value = var.location
+            }
+          ]
         }
       ]
     }

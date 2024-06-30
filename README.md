@@ -164,7 +164,7 @@ Go ahead and issue a GET to `terramate-app2` via cURL:
 curl $APP_URL2
 ```
 
-Open the URL on the browser to check the running service.
+Optionally you can open the URL on the browser to check the running service.
 
 To avoid unnecessary charges to your account let's destroy all stacks:
 
