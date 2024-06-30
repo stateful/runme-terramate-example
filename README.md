@@ -144,12 +144,19 @@ url = "https://terramate-app1-<env>-<hash>-lz.a.run.app"
 
 You can check the outputs with:
 
-```sh {"id":"01J1N5425WZ9SZMJT7KNZ6DQWQ","name":"APP_URLS"}
+```sh {"id":"01J1N5425WZ9SZMJT7KNZ6DQWQ","name":"APP_URL2"}
 terramate run -C stacks/prod \
   terraform output -json 2>/dev/null \
   | jq -r '.url.value' \
   | grep -v null \
-  | tail -n 1
+  | tail -n 1 \
+  | tr -d '\n'
+```
+
+Issue a get request to `terramate-app2`:
+
+```sh {"background":"false","id":"01J1N98T48WVDRBM7BJX417ZSN","interactive":"false"}
+curl $APP_URL2
 ```
 
 Open the URL on the browser to check the running service.

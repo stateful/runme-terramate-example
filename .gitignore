@@ -30,3 +30,4 @@ override.tf.json
 # example: *tfplan*
 .terraform-cache-dir
 *-01*.md
+.env
