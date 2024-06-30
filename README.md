@@ -109,6 +109,8 @@ to disable the git checks):
 git checkout -b runme-cloud-renderers
 ```
 
+Generate code again (this steps was missing?):
+
 ```sh {"id":"01J1N5FPRKTKKV8A48JCM86D53"}
 terramate generate
 ```
