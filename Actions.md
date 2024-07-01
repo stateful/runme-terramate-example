@@ -1,4 +1,4 @@
-## Embedding GCP cloud resources
+## Embedding GCP ☁️ resources
 
 Runme's Cloud-Native Bash Kernel understand how to replace ENV variables with their values. This allows you to generically embed GCP cloud resources in your notebook.
 
@@ -13,7 +13,7 @@ Let's see what VMs we've got running inside the GCP project:
 https://console.cloud.google.com/compute/instances?project=$PROJECT_ID
 ```
 
-## Now let's deep-link AWS resources
+## Now let's deep-link AWS  ☁️ resources
 
 Let's select a profile first. Runme is using the offical AWS SDK under the hood, so it can use the same profiles as the AWS CLI.
 
@@ -36,7 +36,7 @@ https://$EKS_REGION.console.aws.amazon.com/eks/home?region=$EKS_REGION#/clusters
 ## Super easy 🤙
 
 ```sh {"id":"01J1R7VC7QP9Z0CSDCYV4KAY7N","interactive":"false"}
-cat consoles.png
+cat assets/consoles.png
 ```
 
 > 💡 Here's a [video](https://www.youtube.com/watch?v=eeVZQNw5KRU) if you don't remember Xzibit's TV show and how it became a meme.
