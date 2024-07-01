@@ -31,3 +31,4 @@ override.tf.json
 .terraform-cache-dir
 *-01*.md
 .env
+.vscode/settings.json

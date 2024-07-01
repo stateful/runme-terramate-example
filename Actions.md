@@ -33,7 +33,7 @@ echo "EKS_REGION set to $EKS_REGION"
 https://$EKS_REGION.console.aws.amazon.com/eks/home?region=$EKS_REGION#/clusters
 ```
 
-## Super easy 🤙
+## Super useful 🤙 for workflows
 
 ```sh {"id":"01J1R7VC7QP9Z0CSDCYV4KAY7N","interactive":"false"}
 cat assets/consoles.png
