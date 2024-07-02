@@ -1,4 +1,10 @@
-# terramate-example-code-generation
+---
+terminalRows: 18
+---
+
+# terramate-runme-example
+
+Based on [terramate-example-code-generation](https://github.com/terramate-io/terramate-example-code-generation).
 
 ![CI Status](https://github.com/terramate-io/terramate-example-code-generation/actions/workflows/ci.yml/badge.svg)
 [![Join Discord](https://img.shields.io/discord/1088753599951151154?label=Discord&logo=discord&logoColor=white)](https://terramate.io/discord)
@@ -94,7 +100,7 @@ to have [Google Cloud credentials](https://cloud.google.com/docs/authentication/
 and deploying infrastructure will incur costs (check the
 [pre-requisites](#pre-requisites) section for more details).
 
-On `stacks/config.tm.hcl` you will find the `terraform_google_provider_project`
+On [stacks/config.tm.hcl](stacks/config.tm.hcl) you will find the `terraform_google_provider_project`
 global which configures the project where infrastructure will be created.
 
 It is important to change that to a [Google Cloud project](https://cloud.google.com/storage/docs/projects)
@@ -106,7 +112,8 @@ from running any commands. Create a branch (or use the flag `--disable-check-git
 to disable the git checks):
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KC24FTWK"}
-git checkout -b runme-cloud-renderers
+export BRANCH_NAME="runme-cloud-renderers"
+git checkout -b $BRANCH_NAME
 ```
 
 Generate code again (this steps was missing?):
@@ -137,19 +144,23 @@ terramate run -C stacks/${STAGE} -- terraform plan
 And apply them:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KHJW510X"}
-terramate run -C stacks/${STAGE} -- terraform apply
+terramate run -C stacks/${STAGE} -- terraform apply -auto-approve
 ```
 
-For each Cloud Run service deployed, there will be an output with the URL to
-the deployed service, like this:
+## Inspect the deployed resources
 
-```plaintext {"id":"01J1N5425WZ9SZMJT7KJ8WY5WP"}
-url = "https://terramate-app1-<env>-<hash>-lz.a.run.app"
+```sh {"background":"true","id":"01J1NFEEMVDYVJA4GEC54WVSTJ"}
+https://console.cloud.google.com/run/detail/us-central1/terramate-app2-prod/revisions?project=runme-cloud-renderers
 ```
+
+> 💡 For each Cloud Run service deployed, there will be an output with the URL to
+> the deployed service, like this:
+> `url = "https://terramate-app1-<env>-<hash>-lz.a.run.app"`
 
 You can check the outputs with:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KNZ6DQWQ","name":"APP_URL2"}
+# Run with Runme to store output in $APP_URL2
 terramate run -C stacks/${STAGE} -C stacks/${STAGE} \
   terraform output -json 2>/dev/null \
   | jq -r '.url.value' \
@@ -160,17 +171,24 @@ terramate run -C stacks/${STAGE} -C stacks/${STAGE} \
 
 Go ahead and issue a GET to `terramate-app2` via cURL:
 
-```sh {"background":"false","id":"01J1N98T48WVDRBM7BJX417ZSN","interactive":"false"}
-curl $APP_URL2
+```sh {"background":"false","id":"01J1N98T48WVDRBM7BJX417ZSN","interactive":"true"}
+curl -i $APP_URL2
 ```
 
 Optionally you can open the URL on the browser to check the running service.
 
 To avoid unnecessary charges to your account let's destroy all stacks:
 
-```sh {"id":"01J1N5425WZ9SZMJT7KP3VAPG7"}
+```sh {"excludeFromRunAll":"true","id":"01J1N5425WZ9SZMJT7KP3VAPG7"}
 terramate run -C stacks/${STAGE} --reverse -- terraform destroy
 ```
 
 The `--reverse` flag runs all stacks in reversed order, which is desirable
 when destroying resources.
+
+## More Examples
+
+Check out following links to learn more about embedding cloud resources:
+
+- https://github.com/stateful/vscode-runme/tree/main/examples/aws
+- https://github.com/stateful/vscode-runme/tree/main/examples/gcp

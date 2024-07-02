@@ -19,6 +19,10 @@ module "cloud_run" {
           image = var.image
           env = [
             {
+              name  = "RUNME_AND_TERRAMATE"
+              value = "are cool!"
+            },
+            {
               name  = "MY_NAME"
               value = "no-value"
             },
