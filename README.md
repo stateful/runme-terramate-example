@@ -144,7 +144,7 @@ terramate run -C stacks/${STAGE} -- terraform plan
 And apply them:
 
 ```sh {"id":"01J1N5425WZ9SZMJT7KHJW510X"}
-terramate run -C stacks/${STAGE} -- terraform apply -auto-approve
+terramate run -C stacks/${STAGE} -- terraform apply
 ```
 
 ## Inspect the deployed resources
